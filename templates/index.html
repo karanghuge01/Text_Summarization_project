@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Text Summarization</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        /* Ensure the textarea grows in height automatically */
+        textarea {
+            resize: none; /* Disable manual resizing */
+        }
+    </style>
+</head>
+<body class="bg-gray-100 flex items-center justify-center h-screen">
+    <div class="w-full max-w-7xl p-6 bg-white rounded-lg shadow-lg">
+        <h1 class="text-2xl font-bold mb-4 text-gray-800">Text Summarization</h1>
+        <form action="/analyze" method="POST" class="space-y-4">
+            <div>
+                <label for="inputText1" class="block text-gray-700 font-medium mb-2">Input Text</label>
+                <textarea id="inputText1" name="rawtext" rows="6" class="w-full max-w-7xl p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Enter your text here..." oninput="autoResize(this)"></textarea>
+            </div>
+            <button type="submit" class="w-full py-2 px-4 bg-blue-500 text-white font-semibold rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500">Summarize</button>
+        </form>
+    </div>
+
+    <script>
+        function autoResize(textarea) {
+            // Reset height to auto to recalculate
+            textarea.style.height = 'auto';
+            // Set height to scrollHeight to adjust to content
+            textarea.style.height = (textarea.scrollHeight) + 'px';
+        }
+
+        // Optional: Initialize the resize on page load if textarea has default content
+        window.addEventListener('load', () => {
+            const textarea = document.getElementById('inputText1');
+            autoResize(textarea);
+        });
+    </script>
+</body>
+</html>
